@@ -221,13 +221,6 @@ function eRegistration(ticket, fullName, nowTime) {
     if (ticketInfo.fullName !== fullName)
         throw new Error('Ticket not for this person');
 
-    /*     let hoursRegistration = nowTime.getHours();
-    
-        let minutesRegistration = nowTime.getMinutes();
-    
-        let regTime = makeTime(hoursRegistration, minutesRegistration);
-     */
-
     let regTime = formatTime(nowTime);
 
     if (regTime < flight.registrationStarts || regTime > flight.registartionEnds)
@@ -286,7 +279,7 @@ function flightReport(flight, nowTime) {
 
 
     complete =
-        ((registeredSeats == countOfSeats) || (regTime > flight.registartionEnds)) ? true : false;
+        ((registeredSeats == countOfSeats) || (regTime > flight.registartionEnds));
 
     return {
         flight: flight.name,
@@ -301,6 +294,6 @@ function flightReport(flight, nowTime) {
 function formatTime(nowTime) {
     let hoursRegistration = nowTime.getHours();
     let minutesRegistration = nowTime.getMinutes();
-    return makeTime(hoursRegistration, minutesRegistration);;
+    return makeTime(hoursRegistration, minutesRegistration);
 }
 
